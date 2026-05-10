@@ -7,8 +7,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full ring-2 ring-accent">
+            <Link href="/" className="flex items-center gap-2 group transition-opacity hover:opacity-90">
+              <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full ring-2 ring-accent group-hover:ring-primary transition-all">
 
                 <Image
                   src="/webIcon.png"
@@ -19,7 +19,8 @@ export default function Footer() {
                 />
               </div>
               <span className="text-xl font-bold tracking-tight text-gray-900">BrightSmile</span>
-            </div>
+            </Link>
+
 
             <p className="text-base text-gray-600 max-w-xs">
               Providing premium dental care since 2010. Your comfort and oral health are our top priorities.

@@ -9,8 +9,8 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ring-2 ring-accent">
+        <Link href="/" className="flex items-center gap-2 group transition-opacity hover:opacity-90">
+          <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ring-2 ring-accent group-hover:ring-primary transition-all">
 
             <Image
               src="/webIcon.png"
@@ -23,7 +23,8 @@ export default function Navbar() {
           <span className="text-2xl font-bold tracking-tight text-gray-900">
             BrightSmile
           </span>
-        </div>
+        </Link>
+
 
 
         <div className="hidden md:flex md:items-center md:gap-8">
