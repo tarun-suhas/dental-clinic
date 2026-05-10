@@ -83,8 +83,9 @@ export default function ChatBot() {
     // Check for specific services to provide a link
     const servicesList = [
       'general dentistry', 'whitening', 'teeth whitening', 'straighten', 'braces', 'invisalign', 
-      'orthodontics', 'implants', 'pediatric', 'kids', 'root canal', 'sedation', 'dentistry'
+      'orthodontics', 'implants', 'pediatric', 'kids', 'root canal', 'sedation', 'dentistry', 'teeth'
     ];
+
 
     const mentionedService = servicesList.find(service => input.includes(service));
 
