@@ -82,8 +82,8 @@ export default function ChatBot() {
 
     // Check for specific services to provide a link
     const servicesList = [
-      'general dentistry', 'whitening', 'straighten', 'braces', 'invisalign', 
-      'orthodontics', 'implants', 'pediatric', 'kids', 'root canal', 'sedation'
+      'general dentistry', 'whitening', 'teeth whitening', 'straighten', 'braces', 'invisalign', 
+      'orthodontics', 'implants', 'pediatric', 'kids', 'root canal', 'sedation', 'dentistry'
     ];
 
     const mentionedService = servicesList.find(service => input.includes(service));
@@ -95,9 +95,9 @@ export default function ChatBot() {
         setMessages(prev => [...prev, { 
           text: (
             <span>
-              We offer professional {mentionedService} services! You can find more details and all our services here: 
+              We offer professional dental services! You can find more details about our treatments and pricing here: 
               <Link href="/services" className="ml-1 font-bold underline hover:text-white" onClick={() => setIsOpen(false)}>
-                View Services
+                View Services Page
               </Link>
             </span>
           ), 
@@ -106,6 +106,17 @@ export default function ChatBot() {
       }, 1000);
       return;
     }
+
+    // Check for help
+    if (input.includes('help') || input.includes('support') || input.includes('question')) {
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+        setMessages(prev => [...prev, { text: "I'm here to help! You can ask about our hours, location, services, or how to book an appointment.", isBot: true }]);
+      }, 800);
+      return;
+    }
+
 
     let bestMatch = faqs.find(faq => 
       faq.keywords.some(keyword => input.includes(keyword))
