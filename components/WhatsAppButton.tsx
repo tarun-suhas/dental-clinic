@@ -17,9 +17,12 @@ export default function WhatsAppButton() {
           src="/whatsAppIcon.png"
           alt="WhatsApp"
           fill
-          className="object-contain invert"
+          className="object-contain brightness-0 invert"
         />
       </div>
+
+
+
     </a>
   );
 }

@@ -10,11 +10,12 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
+    <nav className={`sticky top-0 z-50 w-full border-b border-gray-100 transition-all duration-300 ${
+      isMenuOpen ? 'bg-white' : 'bg-white/80 backdrop-blur-md'
+    }`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2 group transition-opacity hover:opacity-90">
           <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full ring-2 ring-accent group-hover:ring-primary transition-all">
-
             <Image
               src="/webIcon.png"
               alt="BrightSmile Logo"
@@ -65,67 +66,80 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden"
+            className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 md:hidden transition-colors"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation Overlay */}
       {isMenuOpen && (
-        <div className="absolute left-0 right-0 top-full z-40 h-screen bg-white shadow-2xl md:hidden animate-in slide-in-from-top-2 duration-300">
-          <div className="flex flex-col space-y-6 p-8 border-t border-gray-100">
+        <div className="fixed inset-0 top-[73px] z-40 bg-white md:hidden animate-in fade-in slide-in-from-top-5 duration-300 border-t border-gray-50">
+          <div className="flex flex-col h-full bg-white px-6 py-8 space-y-2">
             <Link 
               href="/services" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-bold text-gray-900 flex items-center justify-between"
+              className="flex items-center justify-between rounded-2xl px-4 py-5 text-lg font-bold text-gray-900 hover:bg-gray-50 transition-colors"
             >
               Services
-              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
             <Link 
               href="/#features" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-bold text-gray-900 flex items-center justify-between"
+              className="flex items-center justify-between rounded-2xl px-4 py-5 text-lg font-bold text-gray-900 hover:bg-gray-50 transition-colors"
             >
               Features
-              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
             <Link 
               href="/doctors" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-bold text-gray-900 flex items-center justify-between"
+              className="flex items-center justify-between rounded-2xl px-4 py-5 text-lg font-bold text-gray-900 hover:bg-gray-50 transition-colors"
             >
               Doctors
-              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
             <Link 
               href="/#testimonials" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-lg font-bold text-gray-900 flex items-center justify-between"
+              className="flex items-center justify-between rounded-2xl px-4 py-5 text-lg font-bold text-gray-900 hover:bg-gray-50 transition-colors"
             >
               Testimonials
-              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
-            <Link
-              href="/#appointment"
-              onClick={(e) => {
-                setIsMenuOpen(false);
-                if (window.location.pathname === '/') {
-                  e.preventDefault();
-                  document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="mt-4 rounded-2xl bg-primary px-6 py-4 text-center text-lg font-bold text-white shadow-lg active:scale-95 transition-transform"
-            >
-              Book Appointment
-            </Link>
+            
+            <div className="pt-8">
+              <Link
+                href="/#appointment"
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  if (window.location.pathname === '/') {
+                    e.preventDefault();
+                    document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="flex w-full items-center justify-center rounded-2xl bg-primary px-6 py-5 text-center text-lg font-bold text-white shadow-xl shadow-primary/20 active:scale-[0.98] transition-all"
+              >
+                Book Appointment
+              </Link>
+            </div>
           </div>
         </div>
       )}
-
     </nav>
+  );
+
   );
 }
 
