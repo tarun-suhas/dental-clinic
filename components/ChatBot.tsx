@@ -45,9 +45,10 @@ const faqs = [
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [userInput, setUserInput] = useState('');
-  const [messages, setMessages] = useState<{ text: string, isBot: boolean }[]>([
+  const [messages, setMessages] = useState<{ text: string | React.ReactNode, isBot: boolean }[]>([
     { text: "Hello! I'm your BrightSmile assistant. How can I help you today? You can ask about our hours, location, or how to book an appointment.", isBot: true }
   ]);
+
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -79,9 +80,37 @@ export default function ChatBot() {
       return;
     }
 
+    // Check for specific services to provide a link
+    const servicesList = [
+      'general dentistry', 'whitening', 'straighten', 'braces', 'invisalign', 
+      'orthodontics', 'implants', 'pediatric', 'kids', 'root canal', 'sedation'
+    ];
+
+    const mentionedService = servicesList.find(service => input.includes(service));
+
+    if (mentionedService) {
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+        setMessages(prev => [...prev, { 
+          text: (
+            <span>
+              We offer professional {mentionedService} services! You can find more details and all our services here: 
+              <Link href="/services" className="ml-1 font-bold underline hover:text-white" onClick={() => setIsOpen(false)}>
+                View Services
+              </Link>
+            </span>
+          ), 
+          isBot: true 
+        }]);
+      }, 1000);
+      return;
+    }
+
     let bestMatch = faqs.find(faq => 
       faq.keywords.some(keyword => input.includes(keyword))
     );
+
 
 
     setIsTyping(true);
