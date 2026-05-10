@@ -11,7 +11,7 @@ const faqs = [
   },
   { 
     question: "Where is the clinic located?", 
-    answer: "Our clinic is located at 123 Dental St, Wellness City. We have ample parking available for our patients.",
+    answer: "Our clinic is located at Champapet Rd, SN Reddy Nagar, Hyderabad. We have ample parking available for our patients.",
     keywords: ['location', 'where', 'address', 'place', 'map', 'direction', 'parking', 'near', 'city', 'area']
   },
   { 

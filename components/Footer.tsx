@@ -55,7 +55,7 @@ export default function Footer() {
               <div>
                 <h3 className="text-sm font-bold tracking-wider text-gray-900 uppercase">Contact Us</h3>
                 <ul className="mt-4 space-y-4">
-                  <li className="text-base text-gray-600">123 Dental St, Wellness City</li>
+                  <li className="text-base text-gray-600">Champapet Rd, SN Reddy Nagar, Hyderabad</li>
                   <li className="text-base text-gray-600">+1 (555) 000-0000</li>
                   <li className="text-base text-gray-600">hello@brightsmile.com</li>
                 </ul>
