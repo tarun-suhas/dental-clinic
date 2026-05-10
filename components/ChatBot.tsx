@@ -52,16 +52,37 @@ export default function ChatBot() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Auto-open chatbot after 5 seconds
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
 
   const processResponse = (text: string) => {
-    const input = text.toLowerCase();
+    const input = text.toLowerCase().trim();
+    
+    // Check for greetings
+    if (input === 'hi' || input === 'hello' || input === 'hey') {
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+        setMessages(prev => [...prev, { text: "Hello! How can I help you today?", isBot: true }]);
+      }, 800);
+      return;
+    }
+
     let bestMatch = faqs.find(faq => 
       faq.keywords.some(keyword => input.includes(keyword))
     );
+
 
     setIsTyping(true);
     setTimeout(() => {
