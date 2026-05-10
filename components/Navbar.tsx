@@ -72,37 +72,41 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 top-[73px] z-40 bg-white md:hidden animate-in fade-in slide-in-from-top-5 duration-300">
-          <div className="flex flex-col space-y-6 p-8">
+        <div className="absolute left-0 right-0 top-full z-40 h-screen bg-white shadow-2xl md:hidden animate-in slide-in-from-top-2 duration-300">
+          <div className="flex flex-col space-y-6 p-8 border-t border-gray-100">
             <Link 
               href="/services" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-xl font-semibold text-gray-900 border-b border-gray-50 pb-4"
+              className="text-lg font-bold text-gray-900 flex items-center justify-between"
             >
               Services
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </Link>
             <Link 
               href="/#features" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-xl font-semibold text-gray-900 border-b border-gray-50 pb-4"
+              className="text-lg font-bold text-gray-900 flex items-center justify-between"
             >
               Features
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </Link>
             <Link 
               href="/doctors" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-xl font-semibold text-gray-900 border-b border-gray-50 pb-4"
+              className="text-lg font-bold text-gray-900 flex items-center justify-between"
             >
               Doctors
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </Link>
             <Link 
               href="/#testimonials" 
               onClick={() => setIsMenuOpen(false)}
-              className="text-xl font-semibold text-gray-900 border-b border-gray-50 pb-4"
+              className="text-lg font-bold text-gray-900 flex items-center justify-between"
             >
               Testimonials
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </Link>
             <Link
               href="/#appointment"
@@ -113,13 +117,14 @@ export default function Navbar() {
                   document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="rounded-2xl bg-primary px-6 py-4 text-center text-lg font-bold text-white shadow-lg"
+              className="mt-4 rounded-2xl bg-primary px-6 py-4 text-center text-lg font-bold text-white shadow-lg active:scale-95 transition-transform"
             >
               Book Appointment
             </Link>
           </div>
         </div>
       )}
+
     </nav>
   );
 }
